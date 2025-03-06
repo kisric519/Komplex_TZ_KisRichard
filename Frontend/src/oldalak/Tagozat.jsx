@@ -13,8 +13,8 @@ const Tagozat = (() => {
     useEffect(() => {
         axios.get('http://127.0.0.1:3333/agazatneve/' + id)
             .then(res => {
-                console.log(res.data[0].agazat)
-                setTagNeve(res.data[0].agazat)
+                console.log(res.data[0])
+                setTagNeve(res.data[0])
             })
             .catch(err => console.error(err));
     }, []);
@@ -48,7 +48,7 @@ const Tagozat = (() => {
                 <div className="row">
                     <h2>A felvettek ragsora, nyelvi előkészítő. A maximalis felvehető tanulók száma 32 fő.</h2>
 
-                    <p>A választott ágazat: {tagNeve}</p>
+                    <p>A választott ágazat: {tagNeve.agazat} {tagNeve.nyek?.data[0] === 1 ? "(nyek)" : ""}</p>
                     <table className="table table-striped">
                         <thead>
                             <tr>
@@ -61,7 +61,7 @@ const Tagozat = (() => {
                             {listaElemei.map(elem => (
                                 <tr key={elem.nev}>
                                     <td>{elem.nev}</td>
-                                    <td>{elem.agazat}</td>
+                                    <td>{elem.agazat} {elem.nyek?.data[0] === 1 ? "(nyek)" : ""}</td>
                                     <td>{elem.pont}</td>
                                 </tr>
 

@@ -19,6 +19,7 @@ const Valaszto = (() => {
 
     function kivalasztva(event) {
         const id = event.target.value
+        console.log(id)
         setValasztott(id)
     }
 
@@ -27,7 +28,7 @@ const Valaszto = (() => {
             <label>Válassza ki, melyik ágazat adatait szeretné látni:</label>
             <select onChange={(e) => kivalasztva(e)} className="form-select">
                 {tagozatok.map(tagozat => (
-                    <option value={tagozat.akod}>{tagozat.agazat}</option>
+                    <option value={tagozat.akod}>{tagozat.agazat} {tagozat.nyek?.data[0] === 1 ? "(nyek)" : ""}</option>
                 ))}
             </select> <br />
             <button className="btn btn-dark" onClick={() => {

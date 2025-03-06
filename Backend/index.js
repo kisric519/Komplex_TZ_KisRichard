@@ -22,7 +22,7 @@ app.get("/", (req,res) => {
 
 //Összes tagozat lekérés
 app.get("/tagozatok", (req,res) => {
-  const sql = "SELECT * FROM `tagozatok`";
+  const sql = "SELECT akod,agazat,nyek FROM `tagozatok`";
   db.query(sql, (err, result) => {
     if (err) return res.json(err);
     return res.json(result);
@@ -42,7 +42,7 @@ app.get("/elozetes", (req,res) => {
 app.get("/agazat/:id", (req, res) => {
   const id = req.params.id;
   const sql = `
-    SELECT jelentkezesek.tag, diakok.nev, tagozatok.agazat, 
+    SELECT jelentkezesek.tag, diakok.nev, tagozatok.agazat, tagozatok.nyek, 
            diakok.hozott + diakok.kpmagy + diakok.kpmat AS pont 
     FROM jelentkezesek 
     INNER JOIN diakok ON jelentkezesek.diak = diakok.oktazon 
