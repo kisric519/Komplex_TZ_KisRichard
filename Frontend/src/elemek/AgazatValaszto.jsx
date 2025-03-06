@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 
 const Valaszto = (() => {
     const [tagozatok, setTagozatok] = useState([]);
-    const [valasztott, setValasztott] = useState("");
+    const [valasztott, setValasztott] = useState("1");
     let navigate = useNavigate();
 
     useEffect(() => {
@@ -25,13 +25,12 @@ const Valaszto = (() => {
     return (
         <>
             <label>Válassza ki, melyik ágazat adatait szeretné látni:</label>
-            <select onChange={(e) => kivalasztva(e)}>
-                <option value="" selected>Válassz...</option>
+            <select onChange={(e) => kivalasztva(e)} className="form-select">
                 {tagozatok.map(tagozat => (
                     <option value={tagozat.akod}>{tagozat.agazat}</option>
                 ))}
             </select> <br />
-            <button onClick={() => {
+            <button className="btn btn-dark" onClick={() => {
                 navigate("/tagozat/" + valasztott);
             }}>Adatok</button>
         </>

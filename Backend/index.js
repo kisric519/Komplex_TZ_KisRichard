@@ -38,7 +38,7 @@ app.get("/elozetes", (req,res) => {
   });
 });
 
-// Előzetes lista
+// Egy agazat
 app.get("/agazat/:id", (req, res) => {
   const id = req.params.id;
   const sql = `
@@ -47,7 +47,7 @@ app.get("/agazat/:id", (req, res) => {
     FROM jelentkezesek 
     INNER JOIN diakok ON jelentkezesek.diak = diakok.oktazon 
     INNER JOIN tagozatok ON jelentkezesek.hely = tagozatok.akod 
-    WHERE jelentkezesek.tag = ? 
+    WHERE jelentkezesek.hely = ? 
     ORDER BY diakok.nev;
   `;
 
